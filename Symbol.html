@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // Symbol的使用 属性私有化 - 数据保护
+
+    // domo1 我希望一个Person的性别在出生以后不可以随便改动
+
+    // 普通的写法，gender 属性可以随便改
+
+    // function Person(name, gender) {
+    //   this.name = name;
+    //   this.gender = gender;
+    // }
+    // var p1 = new Person("cs", "男");
+    // console.log(p1.gender);
+    // p1.gender = "女";
+    // console.log(p1.gender);
+
+    // 没出es6 symbol的时候一般是这么写的，利用内部私有变量属性来写
+    // var Person = (function() {
+    //   var _gender = "";
+    //   function P(name, gender) {
+    //     this.name = name;
+    //     // this.gender = gender;
+    //     _gender = gender;
+    //   }
+    //   P.prototype.getGender = function() {
+    //     return _gender;
+    //   };
+    //   return P;
+    // })();
+    // var p1 = new Person("cs", "男");
+    // console.log(p1.getGender());
+
+    // 从这个例子中可以看到 _gender 这个变量属性 在外部是访问不到的，但是可以在闭包内部访问到
+
+    // var Person = (function() {
+    //   let _gender = Symbol("gender");
+    //   function P(name, gender) {
+    //     this.name = name;
+    //     this[_gender] = gender;
+    //   }
+    //   P.prototype.say = function() {
+    //     console.log(this[_gender]);
+    //   };
+    //   return P;
+    // })();
+    // var p1 = new Person("cs", "男");
+    // console.log(p1);
+    // p1.say();
+  </script>
+</html>
