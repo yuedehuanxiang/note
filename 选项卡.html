@@ -1,0 +1,56 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      button.active {
+        background-color: yellow;
+      }
+      p {
+        display: none;
+      }
+      p.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="active">选项1</button> <button>选项2</button>
+    <button>选项3</button>
+    <p class="active">内容一</p>
+    <p>内容二</p>
+    <p>内容三</p>
+  </body>
+  <script>
+    var button = document.querySelectorAll("button");
+    var p = document.querySelectorAll("p");
+
+    // 原始的写法
+    // for (var i = 0; i < button.length; i++) {
+    //   button[i].index = i;
+    //   button[i].onclick = function() {
+    //     console.log(this.index);
+    //     for (var i = 0; i < button.length; i++) {
+    //       button[i].className = "";
+    //       p[i].className = "";
+    //     }
+    //     this.className = "active";
+    //     p[this.index].className = "active";
+    //   };
+    // }
+
+    // 用 let 的写法
+    for (let i = 0; i < button.length; i++) {
+      button[i].onclick = function() {
+        for (let i = 0; i < button.length; i++) {
+          button[i].className = "";
+          p[i].className = "";
+        }
+        this.className = "active";
+        p[i].className = "active";
+      };
+    }
+  </script>
+</html>
