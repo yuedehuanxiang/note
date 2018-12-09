@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // var arr = ["a", "b", "c"];
+  // for (var attr in arr) {
+  //   console.log(attr); // 0 1 2
+  //   console.log(arr[attr]); // a b c
+  // }
+
+  // var arr = ["a", "b", "c"];
+  // for (var item of arr) {
+  //   console.log(item); // a b c
+  // }
+ 
+  // 迭代对象 有 [Symbol.iterator] 方法的对象
+  // 自己手写一个迭代器 改写obj 对象
+  /*
+  var obj = {
+    let: 100,
+    top: 200
+  };
+  obj[Symbol.iterator] = function() {
+    let a = 0;
+    return {
+      next: function(){
+        a++;
+        if (a < 10 ){
+            return {
+            value: a,
+            done: false
+          }
+        } else {
+          return {
+            value: "",
+            done: true
+          }
+        }
+        
+      }
+    }
+  }
+  */
+
+
+  // 我们可以根据迭代协议 自定义迭代行为
+  // var obj = {
+  //   left: 100,
+  //   top: 200
+  // };
+
+  // obj[Symbol.iterator] = function() {
+  //   let keys = Object.keys(obj);
+  //   let len = keys.length;
+  //   let n = 0;
+
+  //   return {
+  //     next(){
+  //       if (n < len) {
+  //         return {
+  //           value: obj[keys[n++]],
+  //           done: false
+  //         }
+  //       } else {
+  //         return {
+  //           done: true
+  //         }
+  //       }
+
+  //     }
+  //   }
+  // }
+
+  // for (var attr of obj) {
+  //   console.log(attr);  // 100 200
+  // }
+
+  
+</script>
+</html>
