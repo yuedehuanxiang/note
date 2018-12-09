@@ -36,6 +36,9 @@
     P.prototype.setGender = function(newGender) {
       _gender.set(this, newGender);
     }
+    P.getGenders = function() {
+      return _gender;
+    }
     return P;
   })()
 
@@ -43,7 +46,8 @@
   let p2 = new Person('qq', 'nan');
   p1.setGender('66');
   console.log(p1.getGender());
-  console.log(p2.getGender()); 
+  console.log(p2.getGender());
+  console.log(Person.getGenders());
   
 </script>
 </html>

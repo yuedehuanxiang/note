@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  class Person { // 类
+    constructor(name) {
+      this.name = name;
+    }
+    getName() {
+      console.log(this.name);
+    }
+  }
+  let p1 = new Person('cs');
+  p1.getName();
+  class Student extends Person {
+    constructor(name, type) {
+      super(name);
+      this.tyep = type;
+    }
+  }
+  let p2 = new Student('qq', 'xueseng');
+  console.log(p2);
+  
+</script>
+</html>
