@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // let obj = { a: 1 };
+  // obj.b = 2;
+  // Object.defineProperty(obj, 'c', {
+  //   value: 3
+  // })
+  // console.log(obj); // {a: 1, b: 2, c: 3}
+  // obj.c = 444;
+  // console.log(obj); // {a: 1, b: 2, c: 3}
+  // 由于用 Object.defineProperty 定义的 对象属性 默认自带 4个属性 分别是
+  // configurable  enumerable  writable 全部默认是 false 也就是不可改(也不能删)，不可枚举，不可写
+
+  let obj = { a: 1 };
+  // 普通的在对象原型上定义方法或者属性是会被for in 循环遍历到的
+  // Object.prototype.xx = 11;
+  // for (let attr in obj) {
+  //   console.log(attr);  // a xx
+  // }
+
+  // 同过这种方法定义的就不会被遍历到
+  Object.defineProperty(Object.prototype, 'xx', {
+    value: 11
+  })
+  for (let attr in obj) {
+    console.log(attr);  // a 并没有 xx 属性 因为默认是不可枚举的
+  }
+</script>
+</html>
