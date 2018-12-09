@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+  </ul>
+</body>
+<script>
+  // 当只有1个参数时可以省略参数的括号，当返回语句只有一条时，可以省略后面的 {} (但是如果返回值是一个字面量时不能省略)
+  // let fn = x => x+100;
+  // console.log(fn(1)); //101
+
+  // 完整的语句
+  // let fn2 = (x, y) => {
+  //    return {
+  //      x,
+  //      y
+  //    }
+  // }
+
+  // 普通函数的 this 指向 只有在调用时才能确定 
+  // function fn() {
+  //   console.log(this);
+  // }
+  // fn(); // window
+  // var obj = {};
+  // obj.f = fn;
+  // obj.f(); // 指向obj
+  // document.onclick = fn; // 指向触发该事件的对象 document
+
+  // 箭头函数的 this 在函数创建期间就绑定好了
+  // let fn2 = () => {
+  //   console.log(this);
+  // }
+
+  // fn2(); // window
+  // document.onclick = fn2;  // window
+
+    let list = document.querySelectorAll("li");
+    for (let i = 0; i < list.length; i++) {
+      list[i].onclick = function() {
+        let fn = () => {
+          this.style.background = "red";  // 定时器中普通的函数写法 this 绑定的是window
+        }
+        setTimeout(fn, 1000);
+      }
+    }
+
+    // 注意点 
+    // 1. 箭头函数没有arguments 
+    // 2. 不能作为构造函数
+    // 3. 不能作为生成器函数
+    // 4. 内部的this 指向 创建期 上下文对象
+
+    
+
+</script>
+</html>
