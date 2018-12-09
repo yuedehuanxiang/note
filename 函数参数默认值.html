@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 以前的写法
+  // function fn1(x, y) {
+  //   var y = y || 0; 
+  // }
+
+  // es6 默认参数
+  // function fn2(x, y = 0) { // 如果形参中不是所有值都有默认参数，那么有默认值的通常写在最后面
+  //   console.log(x, y);
+  // }
+  // fn2(1); //  1 0
+
+    // 默认对象也可以
+  // function fn4(obj = { a: 1, b: 2 }) {
+  //   console.log(obj);
+  // }
+  // fn4();
+  // fn4({ a: 222 });
+
+  // rest 参数
+  // function arrPush(arr, x, y, z) { //实现 将后面不定参数 x y z ... 全部添加到 arr 中
+      
+  // }
+
+  // 以前利用arguments 的写法
+  // function arrPush() {
+  //   var arr = arguments[0];
+  //   for (var i=1; i<arguments.length; i++) {
+  //     arr.push(arguments[i]);
+  //   }
+  // }
+
+  // es6 rest剩余参数的写法
+  function arrPush(arr, ...restData) { // 注意剩余参数必须放最后
+    for (var i = 0; i < restData.length; i++) {
+      arr.push(restData[i]);
+    }
+  }
+  var arr1 = [1, 2, 3];
+  arrPush(arr1, "a", "b", "c");
+  console.log(arr1); // 
+</script>
+</html>
