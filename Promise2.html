@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // Promise 传参
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     console.log(1);
+  //     //resolve(100);
+  //     reject('error')
+  //   }, 500);
+  // }).then((data) => {
+  //   console.log(data);
+  //   console.log(2);
+  // }, (err) => {
+  //   console.log(err);
+  //   console.log(3);
+  // })
+
+   let p1 = new Promise((resolve, reject) => {
+     setTimeout(() => {
+       resolve(1);
+     }, Math.random() * 1000)
+   })
+   let p2 = new Promise((resolve, reject) => {
+     setTimeout(() => {
+       resolve(2);
+     }, Math.random() * 1000)
+   })
+
+  //  Promise.all( [p1, p2] ).then( data => {
+  //    console.log(data);
+  //  }, err => {
+  //    console.log(err);
+  //  })
+  //  Promise.race( [p1, p2] ).then( data => {
+  //    console.log(data);
+  //  }, err => {
+  //    console.log(err);
+  //  })
+</script>
+</html>

@@ -26,8 +26,8 @@
     // 调用 resolve 会把状态变成 resolved 调用 reject 会变成 rejected
     setTimeout(() => {
       console.log(1);
-      resolve();
-      //reject()
+      //resolve();
+      reject()
     }, 500)
   })
   //console.log(p1);
@@ -52,8 +52,12 @@
   }).then(() => {
     console.log(2);
   }).then(() => {
-    console.log(3);
-    
+    console.log(3); 
+  }).catch(err => { //catch 和then 一样，也会返回一个默认resolved状态的promise对象
+    console.log('cuole');
+  }).then(() => {
+    console.log(4);
   })
+  
 </script>
 </html>
