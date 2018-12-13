@@ -21,4 +21,6 @@ p1.addListener("growup", function() {
   console.log("长大了1岁");
 })
 
+// 各种自定义事件监听设置详情参考 http://nodejs.cn/api/events.html
+
 // document.body.addEventListener("click")
