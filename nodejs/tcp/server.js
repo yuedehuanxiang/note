@@ -18,8 +18,14 @@
   const server = net.createServer();
 
   //当有客户端连接的时候
-  server.on("connection", () => {
+  server.on("connection", socket => {
+    // socket => 当前连接的socket对象
     console.log("有人连接来");
+    socket.write("hello");
+    // socket.on("data", data => {
+    //   console.log(data.toString());
+    //   socket.write("show me the money");
+    // })
   });
 
   /**
