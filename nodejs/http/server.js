@@ -16,7 +16,8 @@ server.on("request", (request, response) => {
   console.log(request.socket.remoteAddress); // request.socket => net.socket
   switch(request.url) {
     case "/":
-      response.write("index");
+      response.setHeader("Content-Type", "text/html"); // MIME  text/plain是纯文本无法识别标签
+      response.write("<h1>index</h1>");
       break;
     case "/list":
       response.write("list");
