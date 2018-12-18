@@ -20,10 +20,20 @@ server.on("request", (request, response) => {
       response.write("<h1>index</h1>");
       break;
     case "/list":
-      response.write("list");
+      response.write("<h1>list</h1>");
       break;
     default:
-      response.write("others");
+      // response.writeHead(404, 'bu ok', { //第二个参数可以随便填自己喜欢的个性描述
+      //   "content-type": "text/html"
+      // });
+      response.writeHead(301, http.STATUS_CODES[305], { 
+        "Content-Type": "text/html",
+        "Location": "/" // 如果有Location这个字段，状态码为301时会自动帮我们重定向
+      });
+      // response.writeHead(404, http.STATUS_CODES[404], { 
+      //   "Content-Type": "text/html"
+      // });
+      response.write("<h1>404</h1>");
       break;
   }
   response.end();
