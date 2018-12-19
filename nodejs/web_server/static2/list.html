@@ -4,9 +4,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/static2/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <h1>list</h1>
+    <div id="app">
+      <h1>这是列表</h1>
+      <ul>
+        <li v-for="user of users">{{ user }}</li>
+      </ul>
+    </div>
   </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        users: []
+      },
+      created() {
+        fetch("/user")
+          .then(res => res.json())
+          .then(data => (this.users = data));
+      }
+    });
+  </script>
 </html>
