@@ -14,6 +14,10 @@ let users = [
 const app = http.createServer((req, res) => {
   let content = "";
 
+  res.writeHead(200, http.STATUS_CODES[200], {
+    "Content-Type": "text/html;charset=utf-8"
+  });
+
   /**
    * 把动态与静态资源进行区分：url
    * 约定：以 /static 开头的都算是静态，我把约定的静态文件都放在了 /static 对应的目录下
@@ -27,6 +31,23 @@ const app = http.createServer((req, res) => {
         res.setHeader("Content-Type", "application/json");
         let data = users.map(user => user.name);
         res.end(JSON.stringify(data));
+        break;
+      case "/getbaidu": // 可以直接输入这个地址 http://127.0.0.1:8080/getbaidu 测试一下接口，会发现1s做百度的奥秘😄
+        const r = http.request(
+          {
+            host: "www.baidu.com"
+          },
+          function(baiduRes) {
+            let data = "";
+            baiduRes.on("data", chunk => {
+              data += chunk.toString();
+            });
+            baiduRes.on("end", () => {
+              res.end(data);
+            });
+          }
+        );
+        r.end();
         break;
     }
   }

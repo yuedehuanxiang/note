@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>get bai du</button>
+  </body>
+  <script>
+    const button = document.querySelector("button");
+
+    button.onclick = function() {
+      fetch("/getbaidu")
+        .then(res => {
+          console.log(res);
+          return res.text(); // 返回的res是一个可读流，调用.text方法变成一个promise对象，然后then 方法接收数据
+        })
+        .then(data => {
+          console.log(data); // 打印获取到的百度首页html代码
+        });
+    };
+  </script>
+</html>
