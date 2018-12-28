@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.6.2"
+    "koa": "^2.6.2",
+    "koa-static-cache": "^5.1.2"
   },
   "devDependencies": {
     "supervisor": "^0.12.0"
