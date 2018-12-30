@@ -1,0 +1,7 @@
+body {
+  /* background-color: aquamarine; */
+}
+.done {
+  text-decoration: line-through;
+  color: #cccccc;
+}

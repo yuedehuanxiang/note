@@ -1,0 +1,21 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>{{ datas.appName }}</h1>
+    <a href="/add">添加新任务</a>
+    <hr />
+    <!-- 我们可以通过url中的querystring传递地址以外的数据 -->
+    <!-- 当我们通过表单发送一个请求的时候
+            当method为get的时候，表单会把表单中的数据通过name添加到action?后面去
+          注意：
+            url的长度是有限制的，所以querystring的长度也是有限制的，数据量比较大的内容是不推荐使用这种方式传值的
+            get请求会缓存，所以get请求的时候，url上的内容也会被缓存
+    -->
+    <form method="POST" action="/posttask"><input name="title" type="text" /> <button>添加</button></form>
+  </body>
+</html>
