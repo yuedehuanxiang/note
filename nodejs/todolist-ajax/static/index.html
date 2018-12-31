@@ -1,0 +1,120 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>todolist</h1>
+      <div><input type="text" v-model="newTask" /> <button @click="add">提交</button></div>
+      <hr />
+      <ul>
+        <li v-for="todo in todos">
+          <input type="checkbox" @click.prevent="toggle(todo.id)" :checked="todo.done" />
+          <span>{{ todo.title }}</span> <button @click="remove(todo.id)">删除</button>
+        </li>
+      </ul>
+      <!-- <button>获取数据</button> -->
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        todos: [],
+        newTask: ""
+      },
+      methods: {
+        add() {
+          fetch("/add", {
+            method: "post",
+            body: JSON.stringify({ title: this.newTask }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          })
+            .then(res => {
+              return res.json();
+            })
+            .then(data => {
+              if (data.code) {
+                alert(data.data);
+              } else {
+                this.todos.push(data.data);
+              }
+              this.newTask = "";
+            });
+        },
+        toggle(id) {
+          // 发送请求到后端修改数据
+          fetch("/toggle", {
+            method: "post",
+            body: JSON.stringify({ id }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          })
+            .then(res => {
+              return res.json();
+            })
+            .then(data => {
+              console.log(data);
+              if (data.code) {
+                alert(data.data);
+              } else {
+                let todo = this.todos.find(todo => todo.id == id);
+                todo.done = data.data.done;
+              }
+            });
+        },
+        remove(id) {
+          // 发送请求到后端修改数据
+          fetch("/remove", {
+            method: "post",
+            body: JSON.stringify({ id }),
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          })
+            .then(res => {
+              return res.json();
+            })
+            .then(data => {
+              console.log(data);
+              if (data.code) {
+                alert(data.data);
+              } else {
+                this.todos = this.todos.filter(todo => todo.id != id);
+              }
+            });
+        }
+      },
+      created() {
+        fetch("/todos")
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            console.log(data);
+            if (data.code == 0) {
+              this.todos = data.data;
+            }
+          });
+      }
+    });
+    // var button = document.querySelector("button");
+    // button.onclick = function() {
+    //   fetch("/")
+    //     .then(res => {
+    //       return res.text();
+    //     })
+    //     .then(data => {
+    //       console.log(data);
+    //     });
+    // };
+  </script>
+</html>
