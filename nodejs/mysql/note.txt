@@ -1,0 +1,48 @@
+创建数据库
+  create database test;
+使用数据库
+  use test;
+显示所有数据库
+  show databases;
+显示某个数据库中所有的表
+  show tables;
+
+sql语法
+  select 字段名，字段名 from 表名; (查询表中的对应字段内容)
+  insert into 表名 （字段名，字段名） values (xxx,xxx); (插入一条数据)
+  update 表名 set 字段名=字段值 (一般都会加个where id=xx 有一个过滤条件的限制不然会把整张表全都改了);
+  delete from 表名 (一般都会加个where id=xx 有一个过滤条件的限制不然会把整张表全都删了); 
+  数据排序 ORDER BY
+    ORDER BY 字段名 ASC(升序) DESC(降序)
+    eg: "SELECT id,title,done FROM todos ORDER BY id DESC"
+    可以用逗号拼接 多个排序条件
+    eg: "SELECT id,title,done FROM todos ORDER BY done DESC,id DESC"
+  查询数量限制
+    LIMIT 可以结合排序使用
+    eg: "SELECT id,title,done FROM todos  ORDER BY done DESC,id DESC LIMIT 2"
+    eg: "SELECT id,title,done FROM todos LIMIT 2 OFFSET 1" 结合offset偏移量可以做分页数据
+    或者 SELECT id,title,done FROM todos LIMIT 1,2 也是限制2条偏移1条
+    分页后端部分代码逻辑
+    const page = 2;
+    const prepage = 4;
+    const sql = `SELECT id,title,done FROM todos  LIMIT ${prepage} OFFSET ${(page - 1) * prepage}`;
+    let [data] = await connection.query(sql);
+
+    根据条件筛选 WHERE
+    eg: SELECT id,title,done FROM todos WHERE done=1
+
+    拓展语法
+    DISTINCT 查询表中不重复的记录，如果指定多个字段，则作为联合条件
+    eg: SELECT DISTINCT done FROM todos; // 0,1
+
+    like 模糊查询 (not like 反向筛选)
+    eg: SELECT * from todos  WHERE title LIKE '%node%';
+
+    批量更新
+    eg: UPDATE todos SET done=1 WHERE id IN (2,8);
+
+    msq中自带的一些辅助函数
+    SELECT COUNT(*) FROM todos;
+    SELECT SUM(done) FROM todos;
+
+
