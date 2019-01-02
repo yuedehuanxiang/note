@@ -1,5 +1,9 @@
 创建数据库
   create database test;
+  创建顺便把字符集和校对规则确定下来
+  create database test default charset utf8mb4 collate utf8mb4_bin;
+删除数据库
+  drop database test;
 使用数据库
   use test;
 显示所有数据库
@@ -44,5 +48,17 @@ sql语法
     msq中自带的一些辅助函数
     SELECT COUNT(*) FROM todos;
     SELECT SUM(done) FROM todos;
+
+  数据库存储引擎
+    mysql常见的存储引擎：InnoDB, MyISAm等
+    字符集和编码
+      utf8mb4:支持更多的unicode字符（四字节）
+    数据校对
+      数据库除了要存储数据，还要对数据进行排序，比较等操作，不同的校对规则会有不同的结果
+      utf8mb4_unicode_ci 基于标准的unicode来排序和比较，能够在各种语言之间精确排序
+    主键
+    索引
+    自增
+    数据类型
 
 
